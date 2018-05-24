@@ -1,0 +1,130 @@
+.tip-no-match{
+    text-align: center;
+    padding-top: 20px;
+}
+#select{
+    background-color: #67C8C1;
+padding: 10px;
+        width: 80%;
+    margin-top: 0px;
+}
+
+
+#select input{
+
+    width:20% ;display: inline;
+    margin-right: 1%;
+}
+
+#select button{
+    width: 13%;
+}
+.row-item{
+    margin-top: 50px;
+}
+
+.item{
+    border: 1px solid #f3f3f3;
+    margin-right: 5%;
+    padding: 18px;
+}
+.row .item div{
+    position: relative;
+}
+.row .img-hotel {
+    width: 140px;
+    height: 105px;
+}
+.item .hotel-name{
+    font-size: 20px;
+    color: #000000;
+    position: absolute;
+    top: 0px;
+    left: 160px;
+}
+.item .hotel-name:hover{
+    color: #000000;
+    text-decoration: none;
+}
+
+.item .hotel-name span{
+    margin-right: 10px;
+    display: inline-block;
+    width: 28px;
+    height: 30px;
+    background: url(http://Static1.ejinjiang.com/themes/NewInns/list/sprite/icon_hotel_list.png) no-repeat -160px -79px;
+    font-size: 18px;
+    color: #fff;
+    line-height: 25px;
+    text-align: center;
+    vertical-align: 1px;
+}
+
+.item .tip-word{
+
+    position: absolute;
+    left: 160px;
+    top: 50px;;
+
+}
+
+.row .img-tip{
+
+    position: absolute;
+    left: 160px;
+    top: 80px;;
+}
+
+
+
+
+
+/*introduce*/
+ .introduce{
+     border: 1px solid #f3f3f3;
+}
+
+.introduce .hotel-info{
+    text-align: center ;margin: 10px auto;font-family: 'Microsoft YaHei';font-size: 20px;
+}
+
+@media (max-width: 768px){
+    #select{
+        width: 100%;
+    }
+
+
+    .row .img-tip{
+        position: relative;
+        top: 0px;
+        left: 0px;
+        margin-top: 0px;
+        margin: 0px;
+        height: 20px;
+    }
+    #select{
+        overflow: hidden;
+    }
+
+    #select input[placeholder="选择城市"]{
+        width: 100%;
+    }
+    #select input[placeholder="起始日期"]{
+        margin-top: 10px;
+        width: 46%;float: left;margin-right: 0px;
+    }
+    #select input[placeholder="离店日期"]{
+        margin-top: 10px;
+        width: 46%;float: right;margin-right: 0px;
+    }
+
+    #select input[placeholder="关键地标"]{
+        margin-top: 10px;
+        width: 46%;float: left;margin-right: 0px;
+    }
+
+    #select button{
+        margin-top: 10px;
+        width: 46%;float: right;margin-right: 0px;
+    }
+}

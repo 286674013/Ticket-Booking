@@ -1,0 +1,4 @@
+ticketBooking/target/               # 忽略所有的  目录下文件
+ticketBooking/.idea/ 
+*.class
+target/

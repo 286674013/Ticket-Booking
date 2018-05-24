@@ -1,0 +1,242 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+    <title>票票</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!--[if lte IE 8]>
+    <script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="assets/css/ie8.css"/><![endif]-->
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="assets/css/common.css">
+    <link rel="stylesheet" href="assets/css/pikaday.css">
+    <link rel="stylesheet" href="assets/css/sweetalert.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="icon" href="images/logo.ico">
+    <meta name="baidu-site-verification" content="coW3BBjOcc"/>
+
+</head>
+<body class="landing">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header" class="alt">
+        <h1><a href="index.html">Dr</a>票票</h1>
+        <nav id="nav">
+
+            <ul id="mainul">
+                <li><a href='page/login.html?port=user' >用户入口</a></li>
+                <li><a href='page/login.html?port=vuene' >商家入口</a></li>
+                <li><a href='page/login.html?port=manager' >经理入口</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <!--search-->
+
+    <div class="col-xs-12  col-sm-12  col-md-3 col-md-offset-1"  id="mainbox"  >
+        <div class="col-xs-12 col-sm-12 col-md-12 "  id="selectbox"></div>
+        <div class="col-xs-12 col-sm-12 col-md-12 " id="mainmenu"  >
+            <div  id="topword" >
+                <span class="tipwordcent">  演出搜索 </span>
+            </div>
+
+            <!--<div class="item" >-->
+                <!--<div><span class="tipword">入住城市</span>-->
+                    <!--<div class="inputselect">-->
+                        <!--<select class="selectpicker"  id="selectpick">-->
+                            <!--<option>南京</option>-->
+                            <!--<option>西安</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="item">
+                <span class="tipword">开始时间</span>
+                <div class="inputselect">
+                    <input type="text" name="password" class="form-control input not-null" placeholder="2018-2-21" id="start">
+                </div>
+            </div>
+
+            <div class="item">
+                <span class="tipword" >结束时间</span>
+                <div class="inputselect">
+                    <input type="text" name="password" class="form-control input not-null" placeholder="2018-2-21" id="end">
+                </div>
+            </div>
+
+            <div class="item">
+            <span class="tipword" >关键字</span>
+
+                <div class="inputselect" style="margin-left: 29px">
+                    <input type="text" name="location" class="form-control input" placeholder="场馆名称/地标/演出类型/演出名称" id="keywords">
+                </div>
+            </div>
+
+            <div style="margin-top: 25px;float: right">
+                <button type="button" class="btn btn-danger"  id="search">搜索</button>
+                <button type="button" class="btn btn-default"  id="recommend" >智能推荐</button>
+            </div>
+        </div>
+
+    </div>
+    <!-- Banner -->
+
+
+    <section id="banner" style="height: 700px;z-index: -20">
+
+    </section>
+
+
+
+
+    <!-- Main -->
+    <section id="main" class="container">
+
+        <section class="box special">
+            <header class="major">
+                <h2>票票</h2>
+                <br/>
+                <h2>永远给您最好的体验</h2>
+                <p>我们会根据您给出的搜索条件,为您选择最喜欢的演出,让您享受艺术的曼妙!
+                </p>
+            </header>
+        </section>
+
+        <section class="box special features">
+            <div class="features-row">
+                <section>
+                    <span class="icon major fa-bolt accent2"></span>
+                    <h3>快速发现</h3>
+                    <p>以最快的速度为您找到最合适的选择</p>
+                </section>
+                <section>
+                    <span class="icon major fa-area-chart accent3"></span>
+                    <h3>优惠便捷</h3>
+                    <p>我们会提供比线下更便捷的购买方式与更低的价格</p>
+                </section>
+            </div>
+            <div class="features-row">
+                <section>
+                    <span class="icon major fa-cloud accent4"></span>
+                    <h3>海量选择</h3>
+                    <p>我们有众多加盟影院与综艺公司,相信一定会为您提供更全面的选择</p>
+                </section>
+                <section>
+                    <span class="icon major fa-lock accent5"></span>
+                    <h3>信息保密</h3>
+                    <p>您所有的预定信息我们都会专门进行数据加密,免除您信息泄露的烦劳</p>
+                </section>
+            </div>
+        </section>
+
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+            <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+            <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; CHR  All rights reserved.</li>
+            <li><a href="http://218.94.159.99/">南京大学软件学院2017-2018[J2EE与中间件]课程项目</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+
+
+<script src="assets/js/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/jquery.scrollgress.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]>
+<script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+<script src="assets/js/bootstrap-select.min.js"></script>
+<script src="assets/js/moment.min.js"></script>
+<script src="assets/js/sweetalert.min.js"></script>
+<script src="assets/js/pikaday.js"></script>
+<script src="assets/js/dateutil.js"></script>
+<script src="assets/js/check.js"></script>
+
+<script type="text/javascript">
+    $('#homePageButton').on('click', function () {
+        $('html, body').animate({
+            scrollTop: $('#page-wrapper').offset().top
+        }, 1200);
+    });
+
+    $('#search').click(function(){
+        var start = $('#start').val();
+        var end =$('#end').val();
+        var keywords = $('#keywords').val();
+            if((!checkInput())&&(matchDate(start,end))){
+                top.location = encodeURI("/assets/page/performsearch.html?begintime="+start+"&endtime="+end+"&keywords="+keywords);
+            }
+
+    });
+
+
+
+    jQuery.ajax({
+        url: '/islogin',
+        type: 'post',
+        dataType: 'json',
+        success: function (data) {
+        var module2 = timeTip()+data.name;
+            if (data.type == 0){
+                module2 += "<li><a href='/assets/page/userinfo.html' >个人中心</a></li> ";
+                $('#mainul').html(module2);
+            }else if (data.type ==1){
+                module2 += "<li><a href='/assets/page/vueneorder.html' >个人中心</a></li> ";
+                $('#mainul').html(module2);
+            }else if (data.type ==2){
+                module2 += "<li><a href='/assets/page/managerorder.html' >个人中心</a></li> ";
+                $('#mainul').html(module2);
+            }
+        }
+
+    });
+    function timeTip(){
+        var localDate = new Date();
+        hour = localDate.getHours();
+        if((hour>=0 && hour<=5)||(hour>=18&&hour<=23))
+            return "晚上好,";
+        else if (hour>=6&&hour<=11)
+            return "早上好,";
+        else if (hour>=12&&hour<=2)
+            return "中午好,";
+        else
+            return "下午好,";
+    }
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+
+
+
+#form-div{
+    border-radius: 15px;
+    padding-top: 15px;
+    margin-top: 10px;
+    background-color: #ffffff;
+    /*height: 550px;*/
+}
+#form{
+
+    text-align: center;
+}
+#form input{
+    margin: 0 auto;
+    width: 65%;
+    height: 40px;
+    margin-top: 30px;
+}
+#confirm-div{
+    padding-top: 20px;
+    border-top: 1px solid  #9a9c9c;
+    margin-top: 30px;
+    text-align: center
+}
+
+#confirm-div div{
+    font-size: 13px;
+    width: 50%;margin: 0 auto;
+}
+
+#confirm-div div input{
+    /*margin-right: 10px;*/
+}
+
+#confirm-div  button{
+    width: 50%;
+    margin-top: 20px;
+}
+#form-div textarea{
+    width: 60%;margin: 30px auto;
+    height: 80px;
+}
+@media (max-width: 768px){
+
+    #confirm-div div{
+        width: 70%;
+    }
+
+    #form input{
+        width: 80%;
+    }
+
+}
+#form-div div .checkconfirm{
+    width: 4%;
+}

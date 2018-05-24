@@ -1,0 +1,87 @@
+
+
+.modal-body p{
+    margin-top: 8px;
+    margin-bottom: 8px;
+
+}
+.container .row .tab-select{
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 0px;
+}
+
+.container .row .tab-select li{
+    padding-left: 0px;
+}
+
+.container .row .main-panel .user-img{
+    color: #ffffff;
+    font-size: 12px;
+    padding-top: 5px;
+    text-align: center;
+    height: 180px;
+    background: url("../image/user-info.jpg");
+    border: 1px solid #ebebeb;
+}
+
+.container .row .main-panel .user-img img{
+    border-radius: 60px;
+}
+
+.container .row .main-panel .user-img .tip-line{
+    font-size: 16px;
+
+    width: 20%;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #9a9c9c;
+}
+
+.container .row .main-panel  .banlance{
+
+    overflow: hidden;
+    margin-top: 20px;
+    font-size: 15px;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ebebeb;
+}
+
+.container .row .main-panel  .banlance  .banlance-xs{
+    font-size: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.container .row .main-panel  .banlance span{
+    font-size: 18px;
+
+}
+
+.container .row .main-panel .word-xs{
+    font-size: 10px;
+}
+
+
+.main-button{
+    border-radius:6px;
+    -webkit-border-radius: 6px;
+    background-color: #d9534f;border: 1px #d9534f solid;
+}
+
+.main-button:hover{
+
+    background-color: #c9302c;border: 1px #c9302c solid;
+}
+
+.hiden{
+    display: none;
+}
+@media (max-width: 768px) {
+    .container .row .main-panel .user-img{
+        height: 200px;
+    }
+}

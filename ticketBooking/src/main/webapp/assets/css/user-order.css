@@ -1,0 +1,54 @@
+
+.main-panel{
+    min-height: 300px;
+}
+.item{
+    padding: 15px;
+    border: 1px #ebebeb solid;
+}
+
+.item table{
+   margin-top: 0px;
+}
+.modal-card{
+    padding: 0px;
+}
+.modal-card p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+ .tab-select{
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 0px;
+}
+
+ .tab-select li{
+    padding-left: 0px;
+}
+ .halfbutton{
+     width: 48% !important;
+     display: inline;
+ }
+ .halfbutton-first{
+     margin-right: 2%;
+ }
+
+@media (max-width: 768px){
+    .halfbutton{
+        width: 100% !important;
+        display: block;
+    }
+    .halfbutton-first{
+        margin-bottom: 10px;
+    }
+
+}
+
+.stablewidth {
+    width: 100%;
+    height: auto;
+    word-wrap:break-word;
+    word-break:break-all;
+    overflow: hidden;
+}

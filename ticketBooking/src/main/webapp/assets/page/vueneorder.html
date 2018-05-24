@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+    <title>订单管理</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!--[if lte IE 8]>
+    <script src="../js/ie/html5shiv.js"></script><![endif]-->
+
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../css/ie8.css"/><![endif]-->
+
+    <link rel="icon" href="../images/logo.ico">
+
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+
+    <!--<link rel="stylesheet" href="assets/css/main.css" />-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/init.css">
+    <link rel="stylesheet" href="../css/pikaday.css">
+    <link rel="stylesheet" href="../css/modal-common.css">
+    <link rel="stylesheet" href="../css/sweetalert.css">
+    <link rel="stylesheet" href="../css/bootstrap-table.css">
+    <link rel="stylesheet" href="../css/manage-common.css">
+
+
+</head>
+<body >
+<!--<div id="page-wrapper">-->
+
+<!-- Header -->
+<header id="header">
+    <h1><a href="/index.html">票票</a></h1>
+    <nav id="nav">
+
+
+        <ul>
+
+
+            <li><a href="#" class="icon fa-angle-down">场馆信息</a>
+                <ul>
+                    <li role="presentation"   class="active"><a href="vueneorder.html">订单管理</a></li>
+                    <li role="presentation" ><a href="vuenemanage.html">场馆管理</a></li>
+                    <li role="presentation"><a href="vueneperform.html">演出发布</a></li>
+                    <li role="presentation" ><a href="vuenefinance.html">业务统计</a></li>
+                    <li role="presentation"><a href="vuene-info-update.html">信息修改</a></li>
+                    <li role="presentation"><a href="vuene-password-update.html">密码修改</a></li>
+
+                </ul>
+            </li>
+            <li ><a id="logout" href="/logout">登出</a></li>
+
+
+        </ul>
+    </nav>
+
+</header>
+
+<!--modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">新建订单</h4>
+            </div>
+            <div class="modal-body">
+
+                    <p>顾客类型</p>
+                    <select  name="select" id="select_k1"  >
+                        <option value="no-vip">非会员</option>
+                        <option value="vip">会员</option>
+                    </select>
+                    <div id="yes-vip" style="display: none">
+                        <p>会员卡号</p>
+                        <input type='text' class='form-control not-null' placeholder='卡号' name='vipid' id="vipid">
+                    </div>
+                    <p>演出选择</p>
+                    <select class="form-control" name="select" id="select_perform"  >
+                    </select>
+                    <p>座位选择</p>
+                    <input type='text' class='form-control not-null' placeholder='座位(以空格 \\ , 等区分)' name='seats' id="seats">
+                    <p>折扣</p>
+                    <input type='text' class='form-control not-null' placeholder='折扣(0.9 0.8...)' name='discount' id="discount">
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="confirmB" >确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+<div class="container">
+
+    <div class="row ">
+        <div class="col-md-2 col-md-offset-1  col-lg-2 col-lg-offset-1 hidden-sm hidden-xs tab-select">
+            <ul class="nav nav-pills nav-stacked" role="tablist">
+                <li role="presentation"  class="active"><a href="vueneorder.html">订单管理</a></li>
+                <li role="presentation" ><a href="vuenemanage.html">场馆管理</a></li>
+                <li role="presentation" ><a href="vueneperform.html">演出发布</a></li>
+                <li role="presentation" ><a href="vuenefinance.html">业务统计</a></li>
+                <li role="presentation" ><a href="vuene-info-update.html">信息修改</a></li>
+                <li role="presentation"><a href="vuene-password-update.html">密码修改</a></li>
+            </ul>
+        </div>
+        <div class="col-md-8  " style="min-height: 300px" >
+            <div id="toolbar" >
+                <button id="add" class="btn btn-danger" onclick="recharge()">新增订单</button>
+                <button id="confirm" class="btn btn-success">订单确认</button>
+                <button id="cancle" class="btn btn-warning">订单取消</button>
+                <button id="select" class="btn btn-info" >未处理订单</button>
+
+            </div>
+            <table id="tablepool"
+                   data-mobile-responsive="true"
+                   data-check-on-init="true"
+                   data-key-events="true"
+                   data-search="true"
+                   data-pagination="true"
+                   data-row-style="rowStyle"
+                   data-pageNumber="1"
+                   data-pageSize="10"
+                   data-pageList="[10, 25, 50, 100]"
+                   data-clickToSelect="true"
+                   data-toolbar = '#toolbar'
+                   >
+                <thead>
+                <tr>
+                    <th data-field="check" data-checkbox="true"
+                        data-formatter="stateFormatter"></th>
+                    <th data-field="orderid" width="100" class="first-tr">订单号</th>
+                    <th data-field="originalprice" width="82" > 原价 </th>
+                    <th data-field="price" width="82" > 现价 </th>
+                    <th data-field="performname" width="82" > 演出名称 </th>
+                    <th data-field="vuenename" width="82" > 场馆名称 </th>
+                    <th data-field="performstart" width="82" > 开始时间 </th>
+                    <th data-field="performend" width="82" > 结束时间 </th>
+                    <th data-field="starttime" width="82" > 创建时间 </th>
+                    <th data-field="orderstate" width="82" > 订单状态 </th>
+                    <th data-field="paytime" width="82" > 支付时间 </th>
+                    <th data-field="cancletime" width="82" > 取消时间 </th>
+                    <th data-field="seats" width="82" > 座位信息 </th>
+                    <th data-field="remark" width="82" > 备注 </th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+        <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+        <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+    </ul>
+    <ul class="copyright">
+        <li>&copy; CHR. All rights reserved.</li>
+        <li><a href="http://218.94.159.99/">南京大学软件学院2017-2018[J2EE与中间件]课程项目</a></li>
+    </ul>
+</footer>
+
+<!--</div>-->
+
+<!-- Scripts -->
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.dropotron.min.js"></script>
+<script src="../js/jquery.scrollgress.min.js"></script>
+<script src="../js/skel.min.js"></script>
+<script src="../js/util.js"></script>
+<!--[if lte IE 8]>
+<script src="../js/ie/respond.min.js"></script><![endif]-->
+<script src="../js/main.js"></script>
+<script src="../js/bootstrap-table.js"></script>
+<script src="../js/bootstrap-table-zh-CN.js"></script>
+<script src="../js/moment.min.js"></script>
+<script src="../js/sweetalert.min.js"></script>
+<script src="../js/jquery.tmpl.min.js"></script>
+<script src="../js/check.js"></script>
+<script src="../js/pikaday.js"></script>
+<script src="../js/dateutil.js"></script>
+<script src="../js/vuene-order.js"></script>
+<script src="../js/logout.js"></script>
+
+</body>
+</html>

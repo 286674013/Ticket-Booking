@@ -1,0 +1,61 @@
+
+#selectbox{
+    filter:alpha(opacity=40);
+    -moz-opacity:0.4;
+    -khtml-opacity: 0.4;
+    opacity: 0.4;
+    background: url("../image/back.png") repeat;
+    height: 370px ;position: absolute; top: 0px;left: 0px;z-index: 10
+}
+#mainbox{
+    height: 370px;
+    margin-top: 120px;
+    position: relative;
+}
+#mainbox #mainmenu{
+    z-index: 20;
+}
+#topword{
+    text-align: center;margin-top: 15px
+}
+#mainbox #mainmenu .tipwordcent{
+    font-size: 23px;color: #000000;font-family: 'Microsoft YaHei';
+
+}
+#mainbox #mainmenu .item{
+    margin: 0 auto ;width: 300px;margin-top: 25px
+}
+#mainbox #mainmenu .item .tipword{
+    font-size: 15px;font-family: 'Microsoft YaHei';
+}
+#mainbox #mainmenu .item .inputselect{
+    width: 220px;display: inline ;margin-left: 15px;overflow: hidden
+}
+#mainbox #mainmenu .item .input{
+    height: 34px;background: #ffffff;width: 220px;display: inline
+}
+
+#search{
+    font-family: 'Microsoft YaHei' ;width: 90px
+}
+
+#recommend{
+  background-color: #9a9c9c;color: #ffffff;font-family: 'Microsoft YaHei' ;width: 105px;border: 1px solid #9a9c9c ;margin-left: 5px;
+}
+
+
+@media (max-width: 768px){
+
+    #selectbox{
+        margin-left: 2%;
+        width: 96%;
+    }
+    #mainmenu{
+        margin-left: 2%;
+        width: 96%;
+    }
+}
+body{
+    background-image: url("../image/banner.jpg") ;
+    background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
+}

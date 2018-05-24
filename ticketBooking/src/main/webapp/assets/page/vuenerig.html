@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+    <title>商家入驻</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!--[if lte IE 8]>
+    <script src="../js/ie/html5shiv.js"></script><![endif]-->
+
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../css/ie8.css"/><![endif]-->
+
+    <link rel="icon" href="../images/logo.ico">
+
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+
+    <!--<link rel="stylesheet" href="assets/css/main.css" />-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/init.css">
+    <link rel="stylesheet" href="../css/sweetalert.css">
+    <link rel="stylesheet" href="../css/register-common.css">
+
+</head>
+<body>
+<!--<div id="page-wrapper">-->
+
+<!-- Header -->
+<header id="header">
+    <h1><a href="/index.html">票票</a></h1>
+
+</header>
+
+
+<div class="container">
+    <div class="row" style="height: 380px">
+        <div class="col-md-6 col-md-offset-1"  >
+
+                <div style="position: relative">
+                    <p style="display: inline" class="tip-word-p">商家入驻</p> <span
+                        class="tip-word-span">已有账号 , <a href="login.html?port=vuene">去登录</a></span>
+                </div>
+                    <div id="form-div" style="min-height: 700px">
+                        <form id="form">
+                            <input type="text" class="form-control not-null-3" placeholder="场馆名称" name="vuenename">
+                            <input type="password" class="form-control not-null-3" placeholder="密码" name="password" id="password">
+                            <input type="text" class="form-control not-null" placeholder="场馆地址" name="vueneaddress">
+                            <input type="text" class="form-control telephone" placeholder="联系电话" name="vuenephone">
+                            <textarea class="form-control not-null" placeholder=为自己的场馆写点介绍吧 name="vuenedescription"></textarea>
+                        </form>
+
+
+
+                        <div id="confirm-div">
+                            <div><input type="checkbox" name="checkbox" class="checkconfirm" id="check">我已阅读并同意 <a>《票票平台细则与条款》</a>
+                            </div>
+                            <button type="button" class="btn btn-danger" id="confirm">注册</button>
+                        </div>
+                </div>
+            </div>
+
+
+
+    </div>
+
+
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+        <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+        <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+    </ul>
+    <ul class="copyright">
+        <li>&copy; CHR. All rights reserved.</li>
+        <li><a href="http://218.94.159.99/">南京大学软件学院2017-2018[J2EE与中间件]课程项目</a></li>
+    </ul>
+</footer>
+
+<!--</div>-->
+
+<!-- Scripts -->
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.dropotron.min.js"></script>
+<script src="../js/jquery.scrollgress.min.js"></script>
+<script src="../js/skel.min.js"></script>
+<script src="../js/util.js"></script>
+<!--[if lte IE 8]>
+<script src="../js/ie/respond.min.js"></script><![endif]-->
+<script src="../js/main.js"></script>
+<script src="../js/jquery.md5.js"></script>
+<script src="../js/sweetalert.min.js"></script>
+<script src="../js/check.js"></script>
+<script src="../js/register-common.js"></script>
+
+<script>
+    $("#confirm").click(function () {
+        register("vuene","form",1);
+    });
+</script>
+
+</body>
+</html>

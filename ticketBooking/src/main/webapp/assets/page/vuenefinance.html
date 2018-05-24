@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+    <title>业务统计</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!--[if lte IE 8]>
+    <script src="../js/ie/html5shiv.js"></script><![endif]-->
+
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../css/ie8.css"/><![endif]-->
+
+    <link rel="icon" href="../images/logo.ico">
+
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+
+    <!--<link rel="stylesheet" href="assets/css/main.css" />-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/init.css">
+    <link rel="stylesheet" href="../css/manage-common.css">
+    <link rel="stylesheet" href="../css/bootstrap-table.css">
+    <link rel="stylesheet" href="../css/sweetalert.css">
+    <link rel="stylesheet" href="../css/user-info.css">
+
+
+</head>
+<body >
+<!--<div id="page-wrapper">-->
+
+<!-- Header -->
+<header id="header">
+    <h1><a href="/index.html">票票</a></h1>
+    <nav id="nav">
+
+
+        <ul>
+
+
+            <li><a href="#" class="icon fa-angle-down">场馆信息</a>
+                <ul>
+                    <li style="white-space: nowrap"><a href="vueneorder.html">订单管理</a></li>
+                    <li style="white-space: nowrap"><a href="vuenemanage.html">场馆管理</a></li>
+                    <li style="white-space: nowrap"><a href="vueneperform.html">演出发布</a></li>
+                    <li style="white-space: nowrap"><a href="vuenefinance.html">业务统计</a></li>
+                    <li style="white-space: nowrap"><a href="vuene-info-update.html">信息修改</a></li>
+                    <li style="white-space: nowrap"><a href="vuene-password-update.html">密码修改</a></li>
+
+                </ul>
+            </li>
+            <li ><a id="logout" href="/logout">登出</a></li>
+
+
+        </ul>
+    </nav>
+
+</header>
+
+<!--modal -->
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">账户提现</h4>
+            </div>
+            <div class="modal-body">
+                <p>银行卡号</p>
+                <input type="text" class="form-control" placeholder="卡号" name="card" id="bank-card">
+                <p>密码</p>
+                <input type="password" class="form-control" placeholder="密码" name="password" id="password">
+                <p>提现金额</p>
+                <input type="text" class="form-control" placeholder="金额" name="number" id="money">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="confirm">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+<div class="container">
+
+    <div class="row ">
+        <div class="col-md-2 col-md-offset-1  col-lg-2 col-lg-offset-1 hidden-sm hidden-xs tab-select">
+            <ul class="nav nav-pills nav-stacked" role="tablist">
+                <li role="presentation"  ><a href="vueneorder.html">订单管理</a></li>
+                <li role="presentation" ><a href="vuenemanage.html">场馆管理</a></li>
+                <li role="presentation" ><a href="vueneperform.html">演出发布</a></li>
+                <li role="presentation"  class="active"><a href="vuenefinance.html">业务统计</a></li>
+                <li role="presentation" ><a href="vuene-info-update.html">信息修改</a></li>
+                <li role="presentation"><a href="vuene-password-update.html">密码修改</a></li>
+            </ul>
+        </div>
+        <div class="col-md-8 main-panel " style="min-height: 300px" >
+            <div class="user-img" >
+                <img src="../image/user-img/1.png" >
+                <div class="tip-line"><p id="time-tip" style="margin: 0px;display: inline">早上好,</p><span id="name">未知用户</span></div>
+                场馆总收入:<span class="vip-card" style="margin-right: 20px" id="balance">0</span>
+                场馆总订单(已完成):<span class="vip-card" style="margin-right: 20px" id="order">0</span>
+                <button  class="main-button" id="getmoney" style="height: 20px;font-size: 1px" onclick="$('#myModal').modal('show')">余额提现</button>
+
+
+            </div>
+
+            <div class="banlance">
+                <div class="col-md-12" style="height: 400px" id="bar"></div>
+                <div class="col-md-12" style="height: 400px" id="line"></div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+        <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+        <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+    </ul>
+    <ul class="copyright">
+        <li>&copy; CHR. All rights reserved.</li>
+        <li><a href="http://218.94.159.99/">南京大学软件学院2017-2018[J2EE与中间件]课程项目</a></li>
+    </ul>
+</footer>
+
+<!--</div>-->
+
+<!-- Scripts -->
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.dropotron.min.js"></script>
+<script src="../js/jquery.scrollgress.min.js"></script>
+<script src="../js/skel.min.js"></script>
+<script src="../js/util.js"></script>
+<!--[if lte IE 8]>
+<script src="../js/ie/respond.min.js"></script><![endif]-->
+<script src="../js/main.js"></script>
+<script src="../js/bootstrap-table.js"></script>
+<script src="../js/bootstrap-table-zh-CN.js"></script>
+<script src="../js/echarts.common.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/sweetalert.min.js"></script>
+<script src="../js/vuene-finance.js"></script>
+<script src="../js/logout.js"></script>
+
+
+
+
+</body>
+</html>

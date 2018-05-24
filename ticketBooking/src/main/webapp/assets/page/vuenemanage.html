@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+    <title>场馆管理</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!--[if lte IE 8]>
+    <script src="../js/ie/html5shiv.js"></script><![endif]-->
+
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../css/ie8.css"/><![endif]-->
+
+    <link rel="icon" href="../images/logo.ico">
+
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+
+    <!--<link rel="stylesheet" href="assets/css/main.css" />-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/init.css">
+    <link rel="stylesheet" href="../css/pikaday.css">
+    <link rel="stylesheet" href="../css/modal-common.css">
+    <link rel="stylesheet" href="../css/manage-common.css">
+    <link rel="stylesheet" href="../css/sweetalert.css">
+    <link rel="stylesheet" href="../css/bootstrap-table.css">
+
+
+</head>
+<body >
+<!--<div id="page-wrapper">-->
+
+<!-- Header -->
+<header id="header">
+    <h1><a href="/index.html">票票</a></h1>
+    <nav id="nav">
+
+
+        <ul>
+
+
+            <li><a href="#" class="icon fa-angle-down">场馆信息</a>
+                <ul>
+                    <li style="white-space: nowrap"><a href="vueneorder.html">订单管理</a></li>
+                    <li style="white-space: nowrap"><a href="vuenemanage.html">场馆管理</a></li>
+                    <li style="white-space: nowrap"><a href="vueneperform.html">演出发布</a></li>
+                    <li style="white-space: nowrap"><a href="vuenefinance.html">业务统计</a></li>
+                    <li style="white-space: nowrap"><a href="vuene-info-update.html">信息修改</a></li>
+                    <li style="white-space: nowrap"><a href="vuene-password-update.html">密码修改</a></li>
+
+                </ul>
+            </li>
+            <li ><a id="logout" href="/logout">登出</a></li>
+
+
+        </ul>
+    </nav>
+
+</header>
+
+<!--modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">新建放映室</h4>
+            </div>
+            <div class="modal-body">
+
+                   <div class="un-watch">
+                       <span id="roomid"></span>
+                   </div>
+                    <input type='text' class='form-control' placeholder='放映室ID' name='playroomid' style="display:none" id="playroomid">
+                    <p>放映室名称</p>
+                    <input type='text' class='form-control not-null' placeholder='放映室名称' name='playroomname'>
+                    <p>座位数</p>
+                    <input type='text' class='form-control not-null' placeholder='座位数' name='totalseats'>
+                    <p>放映室描述(配置\座位排布等)</p>
+                    <input type='text' class='form-control not-null' placeholder='放映室描述(配置\座位排布等)' name='description'>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="confirmB" >确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+<div class="container">
+
+    <div class="row ">
+        <div class="col-md-2 col-md-offset-1  col-lg-2 col-lg-offset-1 hidden-sm hidden-xs tab-select">
+            <ul class="nav nav-pills nav-stacked" role="tablist">
+                <li role="presentation"  ><a href="vueneorder.html">订单管理</a></li>
+                <li role="presentation"  class="active"><a href="vuenemanage.html">场馆管理</a></li>
+                <li role="presentation"><a href="vueneperform.html">演出发布</a></li>
+                <li role="presentation" ><a href="vuenefinance.html">业务统计</a></li>
+                <li role="presentation"><a href="vuene-info-update.html">信息修改</a></li>
+                <li role="presentation"><a href="vuene-password-update.html">密码修改</a></li>
+            </ul>
+        </div>
+        <div class="col-md-8  " style="min-height: 300px" >
+            <div id="toolbar" >
+                <button id="add" class="btn btn-danger" >新增放映室</button>
+
+            </div>
+            <table id="tablepool"
+                   data-mobile-responsive="true"
+                   data-check-on-init="true"
+                   data-key-events="true"
+                   data-search="true"
+                   data-pagination="true"
+                   data-row-style="rowStyle"
+                   data-pageNumber="1"
+                   data-pageSize="10"
+                   data-pageList="[10, 25, 50, 100]"
+                   data-clickToSelect="true"
+                   data-toolbar = '#toolbar'
+                   >
+                <thead>
+                <tr>
+                    <th data-field="playroomid"  class="un-watch">ID</th>
+                    <th data-field="playroomname">放映室名称</th>
+                    <th data-field="totalseats"> 座位数</th>
+                    <th data-field="description">描述</th>
+                    <th data-field="operator" data-formatter="operateFormatter" data-events="operateEvents">操作</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+        <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+        <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+    </ul>
+    <ul class="copyright">
+        <li>&copy; CHR. All rights reserved.</li>
+        <li><a href="http://218.94.159.99/">南京大学软件学院2017-2018[J2EE与中间件]课程项目</a></li>
+    </ul>
+</footer>
+
+<!--</div>-->
+
+<!-- Scripts -->
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.dropotron.min.js"></script>
+<script src="../js/jquery.scrollgress.min.js"></script>
+<script src="../js/skel.min.js"></script>
+<script src="../js/util.js"></script>
+<!--[if lte IE 8]>
+<script src="../js/ie/respond.min.js"></script><![endif]-->
+<script src="../js/main.js"></script>
+<script src="../js/bootstrap-table.js"></script>
+<script src="../js/bootstrap-table-zh-CN.js"></script>
+<script src="../js/moment.min.js"></script>
+<script src="../js/sweetalert.min.js"></script>
+<script src="../js/pikaday.js"></script>
+<script src="../js/dateutil.js"></script>
+<script src="../js/check.js"></script>
+<script src="../js/formobjectserialize.js"></script>
+<script src="../js/vuene-manage.js"></script>
+<script src="../js/logout.js"></script>
+
+</body>
+</html>

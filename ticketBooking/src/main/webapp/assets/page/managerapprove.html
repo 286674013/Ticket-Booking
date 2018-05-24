@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+    <title>门店审批</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!--[if lte IE 8]>
+    <script src="../js/ie/html5shiv.js"></script><![endif]-->
+
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../css/ie8.css"/><![endif]-->
+
+    <link rel="icon" href="../images/logo.ico">
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+<style>
+    table{
+        table-layout:fixed;
+    }
+    td{
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
+</style>
+    <!--<link rel="stylesheet" href="assets/css/main.css" />-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/init.css">
+    <link rel="stylesheet" href="../css/pikaday.css">
+    <link rel="stylesheet" href="../css/modal-common.css">
+    <link rel="stylesheet" href="../css/bootstrap-table.css">
+    <link rel="stylesheet" href="../css/sweetalert.css">
+    <link rel="stylesheet" href="../css/manage-common.css">
+
+
+</head>
+<body >
+<!--<div id="page-wrapper">-->
+
+<!-- Header -->
+<header id="header">
+    <h1><a href="/index.html">票票</a></h1>
+    <nav id="nav">
+
+
+        <ul>
+
+
+            <li><a href="#" class="icon fa-angle-down">管理信息</a>
+                <ul>
+                    <li style="white-space: nowrap"><a href="managerorder.html">支付结算</a></li>
+                    <li style="white-space: nowrap"><a href="managerapprove.html">门店审批</a></li>
+                    <li style="white-space: nowrap"><a href="managercount.html">门店统计</a></li>
+                    <li style="white-space: nowrap"><a href="managervip.html">会员管理</a></li>
+                    <li style="white-space: nowrap"><a href="managerfiance.html">财务统计</a></li>
+                    <li style="white-space: nowrap"><a href="manager-info-update.html">信息管理</a></li>
+
+                </ul>
+            </li>
+            <li ><a id="logout" href="/logout">登出</a></li>
+
+
+        </ul>
+    </nav>
+
+</header>
+
+
+
+
+<div class="container">
+
+    <div class="row ">
+        <div class="col-md-2 col-md-offset-1  col-lg-2 col-lg-offset-1 hidden-sm hidden-xs tab-select">
+            <ul class="nav nav-pills nav-stacked" role="tablist">
+                <li role="presentation"  ><a href="managerorder.html">支付结算</a></li>
+                <li role="presentation"  class="active"><a href="managerapprove.html">门店审批</a></li>
+                <li role="presentation"  ><a href="managercount.html">门店统计</a></li>
+                <li role="presentation"><a href="managervip.html">会员管理</a></li>
+                <li role="presentation"><a href="managerfiance.html">财务统计</a></li>
+                <li role="presentation" ><a href="manager-info-update.html">信息管理</a></li>
+            </ul>
+        </div>
+        <div class="col-md-8  " style="min-height: 300px" >
+            <div id="toolbar" >
+                <button id="confirm" class="btn btn-danger" >通过审批</button>
+                <button id="dis-confirm" class="btn btn-danger" >驳回审批</button>
+            </div>
+            <table id="tablepool"
+                   data-mobile-responsive="true"
+                   data-check-on-init="true"
+                   data-key-events="true"
+                   data-search="true"
+                   data-pagination="true"
+                   data-row-style="rowStyle"
+                   data-pageNumber="1"
+                   data-pageSize="10"
+                   data-pageList="[10, 25, 50, 100]"
+                   data-clickToSelect="true"
+                   data-toolbar = '#toolbar'
+                   >
+                <thead>
+                <tr>
+                    <th data-field="check" data-checkbox="true"></th>
+                    <th data-field="vueneid">场馆编号</th>
+                    <th data-field="vuenename">场馆名称</th>
+                    <th data-field="vuenecode">场馆注册码</th>
+                    <th data-field="vueneaddress">场馆地址</th>
+                    <th data-field="vuenephone">联系电话</th>
+                    <th data-field="vuenedescription">场馆简介</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+        <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+        <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+    </ul>
+    <ul class="copyright">
+        <li>&copy; CHR. All rights reserved.</li>
+        <li><a href="http://218.94.159.99/">南京大学软件学院2017-2018[J2EE与中间件]课程项目</a></li>
+    </ul>
+</footer>
+
+<!--</div>-->
+
+<!-- Scripts -->
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.dropotron.min.js"></script>
+<script src="../js/jquery.scrollgress.min.js"></script>
+<script src="../js/skel.min.js"></script>
+<script src="../js/util.js"></script>
+<!--[if lte IE 8]>
+<script src="../js/ie/respond.min.js"></script><![endif]-->
+<script src="../js/main.js"></script>
+<script src="../js/bootstrap-table.js"></script>
+<script src="../js/bootstrap-table-zh-CN.js"></script>
+<script src="../js/sweetalert.min.js"></script>
+<script src="../js/approve.js"></script>
+<script src="../js/logout.js"></script>
+
+</body>
+</html>
