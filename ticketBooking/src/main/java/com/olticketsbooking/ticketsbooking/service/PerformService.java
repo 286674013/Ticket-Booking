@@ -8,6 +8,7 @@ import com.olticketsbooking.ticketsbooking.dao.VueneDao;
 import com.olticketsbooking.ticketsbooking.model.Perform;
 import com.olticketsbooking.ticketsbooking.model.Playroom;
 import com.olticketsbooking.ticketsbooking.model.Vuene;
+import com.olticketsbooking.ticketsbooking.utils.ClassificationUtil;
 import com.olticketsbooking.ticketsbooking.utils.DateUtil;
 import com.olticketsbooking.ticketsbooking.utils.SeatsUtil;
 import com.olticketsbooking.ticketsbooking.vo.PerformVo;
@@ -30,7 +31,7 @@ public class PerformService {
 
     public MessageInfo addPerform(Vuene vuene, int playroomid, String begintime, String endtime,
                                   double seatprice, String performtype, String performname,
-                                  String performdescription){
+                                  String performkeys,String performdescription){
 //        String playroomname,String playroomdescription
         MessageInfo messageInfo=playroomDao.findRoomById(playroomid);
         if (messageInfo.getObject() == null){
@@ -52,7 +53,7 @@ public class PerformService {
         perform.setPerformtype(performtype);
         perform.setPerformname(performname);
         perform.setPerformdescription(performdescription);
-
+        perform.setPerformkeys(ClassificationUtil.getFormatString(performkeys));
         perform.setCountvacancy(totalseats);
         perform.setTotalseats(totalseats);
         perform.setVacancy(SeatsUtil.getSeatsAll(totalseats));
@@ -61,7 +62,7 @@ public class PerformService {
     }
     public MessageInfo updatePerform(Vuene vuene,int performid, int playroomid, String begintime, String endtime,
                                      double seatprice, String performtype, String performname,
-                                     String performdescription){
+                                     String performkeys,String performdescription){
         MessageInfo messageInfo=playroomDao.findRoomById(playroomid);
         if (messageInfo.getObject() == null){
             return new MessageInfo(false,"演出室信息获取失败,请重新操作");
@@ -89,6 +90,7 @@ public class PerformService {
         perform.setTotalseats(totalseats);
         perform.setVacancy(SeatsUtil.getSeatsAll(totalseats));
         perform.setState(0);
+        perform.setPerformkeys(ClassificationUtil.getFormatString(performkeys));
         return performDao.update(perform);
     }
     public MessageInfo findPerformById(int performid){

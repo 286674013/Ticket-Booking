@@ -21,27 +21,27 @@ public class PerformController {
     @ResponseBody
     public MessageInfo addPerform(HttpSession session,String begintime,String endtime,
                                   double seatprice,String performtype,String performname,
-                                  String performdescription,int playroomname){
+                                  String performkeys,String performdescription,int playroomname){
 
         Vuene vuene=(Vuene) session.getAttribute("vuene");
         if (vuene == null){
             return new MessageInfo(false,"登录信息获取失败,请重新登录");
         }
 
-        return performService.addPerform(vuene,playroomname,begintime,endtime,seatprice,performtype,performname,performdescription);
+        return performService.addPerform(vuene,playroomname,begintime,endtime,seatprice,performtype,performname,performkeys,performdescription);
     }
     @RequestMapping("/vuene/updatePerform")
     @ResponseBody
     public MessageInfo updatePerform(HttpSession session,int performid,String begintime,String endtime,
                                      double seatprice,String performtype,String performname,
-                                     String performdescription,int playroomname){
+                                     String performkeys,String performdescription,int playroomname){
 
         Vuene vuene=(Vuene) session.getAttribute("vuene");
         if (vuene == null){
             return new MessageInfo(false,"登录信息获取失败,请重新登录");
         }
 
-        return performService.updatePerform(vuene,performid,playroomname,begintime,endtime,seatprice,performtype,performname,performdescription);
+        return performService.updatePerform(vuene,performid,playroomname,begintime,endtime,seatprice,performtype,performname,performkeys,performdescription);
     }
     @RequestMapping("/findPerformById")
     @ResponseBody

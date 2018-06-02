@@ -10,6 +10,7 @@ import com.olticketsbooking.ticketsbooking.vo.OrderVo;
 import com.olticketsbooking.ticketsbooking.vo.VueneFinaceCountVo;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -38,6 +39,7 @@ public class OrderDao {
         return baseDao.update(orders);
     }
 
+    /************************           getOrderPart          **************************/
     public MessageInfo findOrder(int id) {
         return baseDao.findById(Orders.class, id);
     }
@@ -55,6 +57,86 @@ public class OrderDao {
                 result.add(new OrderVo(o));
             }
             return new MessageInfo(true, result, "数据获取成功");
+        } catch (Exception re) {
+            re.printStackTrace();
+            return new MessageInfo(false, "数据获取失败");
+        } finally {
+            session.close();
+        }
+
+    }
+
+    public MessageInfo findOrderByUserOriginal(int userid) {
+        Session session = baseDao.getSession();
+        try {
+            String queryString = "from " + Orders.class.getSimpleName()
+                    + " as o where o.userid  =:userid ";
+            Query queryObject = session.createQuery(queryString);
+            queryObject.setInteger("userid", userid);
+            List<Orders> lists = queryObject.list();
+            return new MessageInfo(true, lists, "数据获取成功");
+        } catch (Exception re) {
+            re.printStackTrace();
+            return new MessageInfo(false, "数据获取失败");
+        } finally {
+            session.close();
+        }
+
+    }
+
+
+    public MessageInfo findOrderCountByUserOriginal(int userid) {
+        Session session = baseDao.getSession();
+        try {
+            String queryString = "select o.performid,o.performstart,sum(o.countseats),o.orderstate from " + Orders.class.getSimpleName()
+                    + " as o where o.userid  =:userid group by o.performid,o.orderstate";
+            Query queryObject = session.createQuery(queryString);
+            queryObject.setInteger("userid", userid);
+            List<Orders> lists = queryObject.list();
+
+            return new MessageInfo(true, lists, "数据获取成功");
+        } catch (Exception re) {
+            re.printStackTrace();
+            return new MessageInfo(false, "数据获取失败");
+        } finally {
+            session.close();
+        }
+
+    }
+
+
+    public MessageInfo findOrderPerformTypeByUserOriginal(int userid) {
+        Session session = baseDao.getSession();
+        try {
+            String queryString = "select o.performstart,o.countseats,p.performkeys from " + Orders.class.getSimpleName()
+                    + " as o ,"+Perform.class.getSimpleName()+" as p where o.userid  =:userid and o.orderstate = 3 and o.performid = p.performid";
+            Query queryObject = session.createQuery(queryString);
+            queryObject.setInteger("userid", userid);
+            List<String> lists = queryObject.list();
+
+            return new MessageInfo(true, lists, "数据获取成功");
+        } catch (Exception re) {
+            re.printStackTrace();
+            return new MessageInfo(false, "数据获取失败");
+        } finally {
+            session.close();
+        }
+
+    }
+
+
+    public MessageInfo findOrderPerformTypeBetweenByUserOriginal(long begintime,long endtime,int userid) {
+        Session session = baseDao.getSession();
+        try {
+            String queryString = "select o.performstart,o.countseats,p.performkeys from " + Orders.class.getSimpleName()
+                    + " as o ,"+Perform.class.getSimpleName()+" as p where o.starttime  >:begintime and o.starttime  <:endtime and o.userid  =:userid and o.orderstate = 3 and o.performid = p.performid";
+            Query queryObject = session.createQuery(queryString);
+            queryObject.setLong("begintime", begintime);
+            queryObject.setLong("endtime", endtime);
+            queryObject.setInteger("userid", userid);
+            List<String> lists = queryObject.list();
+
+            return new MessageInfo(true, lists, "数据获取成功");
         } catch (Exception re) {
             re.printStackTrace();
             return new MessageInfo(false, "数据获取失败");
@@ -87,7 +169,28 @@ public class OrderDao {
 
     }
 
-    public MessageInfo findOrderBetweenTime(long begintime,long endtime) {
+    public MessageInfo findOrderByVueneOriginal(int vueneid) {
+        Session session = baseDao.getSession();
+        try {
+            String queryString = "from " + Orders.class.getSimpleName()
+                    + " as model where model.vueneid  =:vueneid ";
+            Query queryObject = session.createQuery(queryString);
+            queryObject.setInteger("vueneid", vueneid);
+            List<Orders> lists = queryObject.list();
+            return new MessageInfo(true, lists, "数据获取成功");
+        } catch (Exception re) {
+            re.printStackTrace();
+            return new MessageInfo(false, "数据获取失败");
+        } finally {
+            session.close();
+        }
+
+    }
+
+    /************************           OrderBetweenTimePart          **************************/
+
+
+    public MessageInfo findOrderBetweenTimeOriginal(long begintime, long endtime) {
         Session session = baseDao.getSession();
         try {
             String queryString = "from " + Orders.class.getSimpleName()
@@ -106,7 +209,8 @@ public class OrderDao {
         }
 
     }
-    public MessageInfo findOrderBetweenTime(long begintime,long endtime,int vueneid) {
+
+    public MessageInfo findOrderBetweenTimeOriginal(long begintime, long endtime, int vueneid) {
         Session session = baseDao.getSession();
         try {
             String queryString = "from " + Orders.class.getSimpleName()
@@ -134,6 +238,8 @@ public class OrderDao {
         return baseDao.getAll(Orders.class);
 
     }
+
+    /************************           cancleOrderPart          **************************/
     public MessageInfo cancleOrder(Orders orders) {
         MessageInfo messageInfo1=performDao.findPerformById(orders.getPerformid());
         Perform perform=(Perform)messageInfo1.getObject();
@@ -206,6 +312,8 @@ public class OrderDao {
             session.close();
         }
     }
+
+    /************************           orderPayPart          **************************/
 
     public MessageInfo payOrderByBalance(User user, Orders orders) {
         MessageInfo messageInfo1=managerDao.findManagerById(1);
@@ -327,76 +435,7 @@ public class OrderDao {
         }
     }
 
-    public double getUserdiscountUpdate(double countspending){
-        double level=1;
-        if(countspending>1000000){
-           level=0.66;
-        }else if(countspending>800000){
-            level=0.68;
-        }
-        else if(countspending>500000){
-            level=0.7;
-        }
-        else if(countspending>200000){
-            level=0.75;
-        }
-        else if(countspending>100000){
-            level=0.77;
-        }
-        else if(countspending>50000){
-            level=0.8;
-        }
-        else if(countspending>20000) {
-            level=0.83;
-        }
-        else if(countspending>10000){
-            level=0.85;
-        }
-        else if(countspending>5000){
-            level=0.88;
-        }
-        else if(countspending>1000){
-            level=0.9;
-        }else{
-            level=0.95;
-        }
-        return level;
-    }
-    public int getUserlevelUpdate(double countspending){
-        int level=0;
-        if(countspending>1000000){
-            level=10;
-        }else if(countspending>800000){
-            level=9;
-        }
-        else if(countspending>500000){
-            level=8;
-        }
-        else if(countspending>200000){
-            level=7;
-        }
-        else if(countspending>100000){
-            level=6;
-        }
-        else if(countspending>50000){
-            level=5;
-        }
-        else if(countspending>20000) {
-            level=4;
-        }
-        else if(countspending>10000){
-            level=3;
-        }
-        else if(countspending>5000){
-            level=2;
-        }
-        else if(countspending>1000){
-            level=1;
-        }else{
-            level=0;
-        }
-        return level;
-    }
+
     public MessageInfo orderPay(Vuene vuene,int performid,int userid,String seats,double discount) {
         MessageInfo messageInfo = performDao.findPerformById(performid);
         Perform perform = (Perform) messageInfo.getObject();
@@ -488,6 +527,80 @@ public class OrderDao {
         }
     }
 
+    /************************           userLevelPart          **************************/
+    public double getUserdiscountUpdate(double countspending){
+        double level=1;
+        if(countspending>1000000){
+            level=0.66;
+        }else if(countspending>800000){
+            level=0.68;
+        }
+        else if(countspending>500000){
+            level=0.7;
+        }
+        else if(countspending>200000){
+            level=0.75;
+        }
+        else if(countspending>100000){
+            level=0.77;
+        }
+        else if(countspending>50000){
+            level=0.8;
+        }
+        else if(countspending>10000) {
+            level=0.83;
+        }
+        else if(countspending>1500){
+            level=0.85;
+        }
+        else if(countspending>500){
+            level=0.88;
+        }
+        else if(countspending>100){
+            level=0.9;
+        }else{
+            level=0.95;
+        }
+        return level;
+    }
+    public int getUserlevelUpdate(double countspending){
+        int level=0;
+        if(countspending>1000000){
+            level=10;
+        }else if(countspending>800000){
+            level=9;
+        }
+        else if(countspending>500000){
+            level=8;
+        }
+        else if(countspending>200000){
+            level=7;
+        }
+        else if(countspending>100000){
+            level=6;
+        }
+        else if(countspending>50000){//
+            level=5;
+        }
+        else if(countspending>10000) {//重度爱好者
+            level=4;
+        }
+        else if(countspending>1500){//中级爱好者
+            level=3;
+        }
+        else if(countspending>500){//初步爱好者
+            level=2;
+        }
+        else if(countspending>100){//普通用户
+            level=1;
+        }else{
+            level=0;//白板用户
+        }
+        return level;
+    }
+
+
+    /************************           orderSumPart          **************************/
     public MessageInfo getAllOrdersNum(){
         Session session = baseDao.getSession();
         try{
@@ -577,5 +690,33 @@ public class OrderDao {
             session.close();
         }
     }
+
+    /************************           orderAnalysisForVuenePart          **************************/
+
+    public MessageInfo vueneCalAllOrderBetween(long begintime, long endtime, int vueneid) {
+        Session session = baseDao.getSession();
+        try {
+            String queryString = "select count(modal.orderid) from " + Orders.class.getSimpleName()
+                    + " as model where model.starttime  >:begintime and model.starttime  <:endtime and model.vueneid=:vueneid ";
+            Query queryObject = session.createQuery(queryString);
+            queryObject.setLong("begintime", begintime);
+            queryObject.setLong("endtime", endtime);
+            queryObject.setLong("vueneid", vueneid);
+            queryObject.setResultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP);
+            List lists = queryObject.list();
+            return new MessageInfo(true, lists, "数据获取成功");
+        } catch (Exception re) {
+            re.printStackTrace();
+            return new MessageInfo(false, "数据获取失败");
+        } finally {
+            session.close();
+        }
+
+    }
+
+
+
+
+    /************************           orderAnalysisForPlatformPart          **************************/
 
 }

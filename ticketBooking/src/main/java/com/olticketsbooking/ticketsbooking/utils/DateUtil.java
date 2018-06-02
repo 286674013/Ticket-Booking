@@ -147,7 +147,7 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils  {
             calendar.set(Calendar.MONTH, month-months);
             calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
 //            System.out.println("上个月最后一天："+sf.format(calendar.getTime()));
-            return getTimeDateOnlyLong(sf.format(calendar.getTime()));
+            return getTimeDateOnlyLong(sf.format(calendar.getTime()))+24*60*60*1000;
         }catch (Exception e) {
             e.printStackTrace();
         }

@@ -28,5 +28,10 @@ public class testUtil {
 
         System.out.println(24*60*60*1000);
 
+        System.out.println(DateUtil.getLongToDateString(DateUtil.getAfterLastMonthdate(2))+DateUtil.getLongToDateString(DateUtil.getBeforeNextMonthdate(0)));
+        ClassificationUtil.getSum();
+        ClassificationUtil.getObjSum();
+//        System.out.println(4-3.6==0.4);
+
     }
 }

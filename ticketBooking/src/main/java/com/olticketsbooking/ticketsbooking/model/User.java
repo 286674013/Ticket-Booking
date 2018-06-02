@@ -31,7 +31,20 @@ public class User {
     double countspending;
     //用户总的下单数
     int countorders;
-
+    int usertype;
+    String preference;//"电影<>1,周杰伦<>2"
+//    用户分级:
+//    0-4 常规用户分级,根据个人消费额度(即等级制度)
+//    0-白板用户,1-普通用户,2-初级爱好者,3-中级爱好者,4-重度爱好者;
+//    5-团体票购买者,有多笔团体购票(大于5张)记录者,暂定为5笔以上;
+//    6-疑似黄牛购买者,大量的团体购票,极多笔团体购票(大于五张),暂定为团购票总数大于1000张者;
+//
+//    用户爱好分类:
+//    统计各类型票务下单次数及占比:(单次票务支持多种类型)
+//    某种类型票务占比超过90%,定位为偏爱
+//    某种类型票务占比超过60%,定位为爱好
+//    某种类型票务占比超过15%,定位为有点兴趣
+//    低于15%,定位有所涉猎
 
     public User() {
     }
@@ -152,5 +165,21 @@ public class User {
 
     public void setCountorders(int countorders) {
         this.countorders = countorders;
+    }
+
+    public int getUsertype() {
+        return usertype;
+    }
+
+    public void setUsertype(int usertype) {
+        this.usertype = usertype;
+    }
+
+    public String getPreference() {
+        return preference;
+    }
+
+    public void setPreference(String preference) {
+        this.preference = preference;
     }
 }

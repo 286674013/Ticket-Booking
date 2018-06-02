@@ -3,9 +3,12 @@ package com.olticketsbooking.ticketsbooking.task;
 import com.olticketsbooking.ticketsbooking.dao.EmailDao;
 import com.olticketsbooking.ticketsbooking.dao.OrderDao;
 import com.olticketsbooking.ticketsbooking.dao.PerformDao;
+import com.olticketsbooking.ticketsbooking.dao.VueneDao;
 import com.olticketsbooking.ticketsbooking.model.EmailActivation;
 import com.olticketsbooking.ticketsbooking.model.Orders;
 import com.olticketsbooking.ticketsbooking.model.Perform;
+import com.olticketsbooking.ticketsbooking.model.Vuene;
+import com.olticketsbooking.ticketsbooking.service.VueneService;
 import com.olticketsbooking.ticketsbooking.utils.DateUtil;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -21,7 +24,12 @@ public class CheckTasks {
     OrderDao orderDao;
     @Resource
     PerformDao performDao;
+    @Resource
+    VueneDao vueneDao;
+    @Resource
+    VueneService vueneService;
 
+    //邮件校验超时
     @Scheduled(cron = "0 0/1 *  * * ?")
     public void checkEmailValid() {
         List<EmailActivation> list = (List<EmailActivation>) emailDao.findAllEmailActivation().getObject();
@@ -36,6 +44,7 @@ public class CheckTasks {
         }
 
     }
+    //订单状态超时
     @Scheduled(cron = "0 0/1 *  * * ?")
     public void checkOrderState(){
         List<Orders> list=(List<Orders>)orderDao.allOrder().getObject();
@@ -51,6 +60,7 @@ public class CheckTasks {
         }
     }
 
+    //演出状态超时
     @Scheduled(cron = "0 0/1 *  * * ?")
     public void checkPerformState(){
         List<Perform> list=(List<Perform>)performDao.allPerform().getObject();
@@ -67,6 +77,15 @@ public class CheckTasks {
         }
     }
 
-
+    //每周一更新场馆分级信息
+    @Scheduled(cron = " 0 0 6 ? * MON")//每周一6点更新
+    public void updateVueneType(){
+        List<Vuene> list=(List<Vuene>)vueneDao.getAllVuene().getObject();
+        for(Vuene vuene:list){
+            if(vuene.getState()==1){
+                vueneService.updateVueneTypeInfo(vuene);
+            }
+        }
+    }
 
 }

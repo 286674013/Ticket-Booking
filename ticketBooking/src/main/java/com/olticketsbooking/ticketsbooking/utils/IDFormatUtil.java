@@ -1,11 +1,7 @@
 package com.olticketsbooking.ticketsbooking.utils;
 
 
-/**
- * Created by Jiayiwu on 17/2/10.
- * Mail:wujiayi@lgdreamer.com
- * Change everywhere
- */
+
 public class IDFormatUtil {
 
     public  static String encodeUserId(int id){

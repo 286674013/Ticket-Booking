@@ -115,6 +115,14 @@ public class UserService {
         }
     }
 
+    public MessageInfo updateUserPreference(int userid){
+        User user=(User)userDao.findUser(userid).getObject();
+        return  userDao.updateUserPreference(user);
+    }
+    public MessageInfo updateUserType(int userid){
+        User user=(User)userDao.findUser(userid).getObject();
+        return  userDao.updateUserType(user);
+    }
 
     public MessageInfo cancleUser(int id){
         User user=(User)userDao.findUser(id).getObject();

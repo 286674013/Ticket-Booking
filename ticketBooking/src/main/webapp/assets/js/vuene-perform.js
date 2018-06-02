@@ -2,6 +2,13 @@
 
 $(function(){
     init();
+    // $('#performchoice').multiselect({setMaxOptionNum:10,selectedHtmlValue:'多选'});
+
+    $('#performkeys').manifest();
+
+  
+
+
 });
 
 function init(){
@@ -56,8 +63,17 @@ function initModalOptions() {
 
 }
 
+function getPerformKeys() {
+    var key="";
+    $(".mf_item").each(function(){
+        key=key+$(this).text()+",";
+    });
+    return key;
+}
+
 function addOrModify(url,tip){
-    console.log($('#roomchoice option:selected').val()+$('#performchoice option:selected').val());
+    // alert(getPerformKeys());
+    // console.log($('#roomchoice option:selected').val()+$('#performchoice option:selected').val());
     if (!checkInput()) {
         var performid = $('#performid').val();
         if (performid == ''||!performid)
@@ -78,6 +94,7 @@ function addOrModify(url,tip){
                 endtime: $('input[name="endtime"]').val(),
                 totalseats: $('input[name="totalseats"]').val(),
 
+                performkeys:getPerformKeys(),
                 performdescription: $('input[name="performdescription"]').val()
 
             },
@@ -133,7 +150,6 @@ window.operateEvents = {
         $('input[name="begintime"]').val(row.begintime);
         $('input[name="endtime"]').val(row.endtime);
         $('input[name="totalseats"]').val(row.totalseats);
-
         $('input[name="performdescription"]').val(row.performdescription)       ;
         $('.modal-title').html('修改');
         $('#myModal').modal('toggle');

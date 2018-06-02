@@ -21,7 +21,7 @@ public class PerformVo {
     int countvacancy;
     int totalseats;
     String state; //0:初创,1:进行中,2:过期,3:取消,4:其他
-
+    String performkeys;
     public PerformVo() {
     }
 
@@ -62,6 +62,7 @@ public class PerformVo {
         else {
             this.state = "其他";
         }
+        this.performkeys=perform.getPerformkeys();
     }
 
     public int getTotalseats() {
@@ -198,5 +199,13 @@ public class PerformVo {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getPerformkeys() {
+        return performkeys;
+    }
+
+    public void setPerformkeys(String performkeys) {
+        this.performkeys = performkeys;
     }
 }

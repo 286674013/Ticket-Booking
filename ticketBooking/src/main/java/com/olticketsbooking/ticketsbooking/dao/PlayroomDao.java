@@ -60,5 +60,23 @@ public class PlayroomDao {
         }
     }
 
+    public MessageInfo findRoomByVueneOriginal(int vueneid) {
+        Session session = baseDao.getSession();
+        try {
+            String queryString = "from " + Playroom.class.getSimpleName()
+                    + " as model where model.vueneid  =:vueneid and model.state=0";
+            Query queryObject = session.createQuery(queryString);
+            queryObject.setInteger("vueneid", vueneid);
+            List<Playroom> lists = queryObject.list();
+
+            return new MessageInfo(true, lists, "数据获取成功");
+        } catch (Exception re) {
+            re.printStackTrace();
+            return new MessageInfo(false, "数据获取失败");
+        } finally {
+            session.close();
+        }
+    }
+
 
 }

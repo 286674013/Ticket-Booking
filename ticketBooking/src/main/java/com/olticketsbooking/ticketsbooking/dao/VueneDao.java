@@ -2,6 +2,7 @@ package com.olticketsbooking.ticketsbooking.dao;
 
 import com.olticketsbooking.ticketsbooking.config.MessageInfo;
 import com.olticketsbooking.ticketsbooking.model.*;
+import com.olticketsbooking.ticketsbooking.utils.ClassificationUtil;
 import com.olticketsbooking.ticketsbooking.utils.DateUtil;
 import com.olticketsbooking.ticketsbooking.utils.MathUtil;
 import com.olticketsbooking.ticketsbooking.utils.SeatsUtil;
@@ -10,12 +11,20 @@ import org.hibernate.criterion.Projections;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.util.List;
+
 @Repository
 public class VueneDao {
     @Resource
     BaseDao baseDao;
     @Resource
     BankCardDao bankCardDao;
+    @Resource
+    OrderDao orderDao;
+    @Resource
+    PerformDao performDao;
+    @Resource
+    PlayroomDao playroomDao;
 
     public MessageInfo findVuene(String vuenecode){
         return   baseDao.findByPropertySingle(Vuene.class,"vuenecode",vuenecode);
@@ -133,5 +142,28 @@ public class VueneDao {
         }
     }
 
+
+    //获取场馆上个月的订单信息及当前(结算时刻)的场馆放映室信息
+    public MessageInfo updateVueneTypeInfo(Vuene vuene){
+        //上月订单数据(其实也可使用perform数据,但是扩拓展性弱)
+        MessageInfo messageInfo= orderDao.findOrderBetweenTimeOriginal(DateUtil.getAfterLastMonthdate(2),DateUtil.getBeforeNextMonthdate(0),vuene.getVueneid());
+//        MessageInfo messageInfo1= performDao.findAllPerformByVueneBetween(DateUtil.getAfterLastMonthdate(2),DateUtil.getBeforeNextMonthdate(0),vuene.getVueneid());
+        MessageInfo messageInfo1=playroomDao.findRoomByVueneOriginal(vuene.getVueneid());
+        if(messageInfo.isResult()&&messageInfo1.isResult()){
+            List<Orders> lists =(List<Orders>)messageInfo.getObject();
+//            List<Perform> lists1=(List<Perform>)messageInfo1.getObject();
+            List<Playroom> list =(List<Playroom>)messageInfo1.getObject();
+            int type=ClassificationUtil.getVueneType(lists,list);
+            vuene.setVuenetype(type);
+            if(update(vuene).isResult()){
+                return new MessageInfo(true,type, "更新场馆类型信息成功!");
+            }else{
+                return new MessageInfo(false,type, "更新场馆类型信息失败!");
+            }
+        }else{
+            return new MessageInfo(false, "获取场馆相关信息失败!");
+        }
+//        return new MessageInfo(false, "更新场馆类型信息失败!");
+    }
 }
 

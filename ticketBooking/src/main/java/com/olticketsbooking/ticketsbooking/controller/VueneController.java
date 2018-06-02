@@ -159,5 +159,22 @@ public class VueneController {
         return vueneService.getmoney(object.getVueneid(),bankcardid,password,money);
     }
 
+    @RequestMapping("/vuene/updateType")
+    @ResponseBody
+    public MessageInfo getmoney(HttpSession session,int  vueneid){
+//        Vuene object =  (Vuene) session.getAttribute("vuene");
+//        if (object == null)
+//            return new MessageInfo(false,"请登录");
+        Vuene vuene=(Vuene) vueneService.vueneInfo(vueneid).getObject();
+
+        return vueneService.updateVueneTypeInfo(vuene);
+    }
+
+    @RequestMapping("/vuene/analysisVenue")
+    @ResponseBody
+    public MessageInfo analysisVuene(HttpSession session,int  vueneid,int timerange){
+        Vuene vuene=(Vuene) vueneService.vueneInfo(vueneid).getObject();
+        return vueneService.analysisVuene(vuene,timerange);
+    }
 
 }

@@ -3,13 +3,11 @@ package com.olticketsbooking.ticketsbooking.dao;
 
 import com.olticketsbooking.ticketsbooking.config.MessageInfo;
 import com.olticketsbooking.ticketsbooking.model.Perform;
-import com.olticketsbooking.ticketsbooking.vo.PerformVo;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -62,6 +60,28 @@ public class PerformDao {
             session.close();
         }
     }
+
+    public MessageInfo findAllPerformByVueneBetween(long begintime, long endtime,int vueneid) {
+        Session session = baseDao.getSession();
+        try {
+            String queryString = "from " + Perform.class.getSimpleName()
+                    + " as model where model.begintime  >:begintime and model.endtime  <:endtime and model.vueneid  =:vueneid";
+//            and model.state=0
+            Query queryObject = session.createQuery(queryString);
+            queryObject.setInteger("vueneid", vueneid);
+            queryObject.setLong("begintime", begintime);
+            queryObject.setLong("endtime", endtime);
+            List<Perform> lists = queryObject.list();
+
+            return new MessageInfo(true, lists, "数据获取成功");
+        } catch (Exception re) {
+            re.printStackTrace();
+            return new MessageInfo(false, "数据获取失败");
+        } finally {
+            session.close();
+        }
+    }
+
 
     public MessageInfo searchPerform(long begintime,long endtime,String keywords){
 //        System.out.println(begintime+endtime+keywords);

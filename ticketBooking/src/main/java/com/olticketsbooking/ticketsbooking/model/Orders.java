@@ -50,6 +50,7 @@ public class Orders {
     long performstart;
     long performend;
 
+    int countseats;
     String seats;///1,2,3....
 
 
@@ -177,6 +178,14 @@ public class Orders {
 
     public void setPerformend(long performend) {
         this.performend = performend;
+    }
+
+    public int getCountseats() {
+        return countseats;
+    }
+
+    public void setCountseats(int countseats) {
+        this.countseats = countseats;
     }
 
     public String getSeats() {

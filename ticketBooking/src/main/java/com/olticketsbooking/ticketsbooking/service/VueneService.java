@@ -4,6 +4,8 @@ import com.olticketsbooking.ticketsbooking.config.MessageInfo;
 import com.olticketsbooking.ticketsbooking.dao.OrderDao;
 import com.olticketsbooking.ticketsbooking.dao.VueneDao;
 import com.olticketsbooking.ticketsbooking.model.Vuene;
+import com.olticketsbooking.ticketsbooking.utils.DataAnalysisForVuene;
+import com.olticketsbooking.ticketsbooking.utils.DateUtil;
 import com.olticketsbooking.ticketsbooking.vo.VueneFinaceCountVo;
 import com.olticketsbooking.ticketsbooking.vo.VueneFinaceInfoVo;
 import org.springframework.stereotype.Service;
@@ -185,5 +187,21 @@ public class VueneService {
     }
     public MessageInfo getmoney(int vueneid,String bankcardid,String password,double money){
         return vueneDao.getmoney(vueneid,bankcardid,password,money);
+    }
+
+    public MessageInfo updateVueneTypeInfo(Vuene vuene){
+        return  vueneDao.updateVueneTypeInfo(vuene);
+    }
+
+    public MessageInfo analysisVuene(Vuene vuene,int timeRange){
+        DataAnalysisForVuene analysis=new DataAnalysisForVuene();
+        analysis.setVueneid(vuene.getVueneid());
+        analysis.setTimeRange(timeRange);
+        MessageInfo messageInfo=orderDao.vueneCalAllOrderBetween(DateUtil.getPresentTimeLong()-DateUtil.getPassedDateLong(timeRange),DateUtil.getPresentTimeLong(),vuene.getVueneid());
+        if(messageInfo.isResult()){
+            return new MessageInfo(true,messageInfo.getObject().toString(),"获取场馆统计数据成功");
+        }
+
+        return new MessageInfo(false,"");
     }
 }

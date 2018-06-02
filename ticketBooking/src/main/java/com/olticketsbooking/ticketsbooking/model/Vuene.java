@@ -32,6 +32,11 @@ public class Vuene {
     String vuenedescription;
     double balance;
     int state;// 0未激活  1激活  2停用
+    int vuenetype;//根据单位时间内售票数及场馆放映室规模确定
+//    单月售票数少于1000(暂定)或总座位规模小于200的场馆为-1-小型场馆
+//    单月售票数大于5000(暂定)或总座位规模大于500的场馆为-2-热门场馆
+//    单月售票数大于10000(暂定)或总座位规模大于1000的场馆为-3-顶尖场馆
+//    余下的为-0-普通场馆
     public Vuene() {
     }
 
@@ -108,5 +113,13 @@ public class Vuene {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public int getVuenetype() {
+        return vuenetype;
+    }
+
+    public void setVuenetype(int vuenetype) {
+        this.vuenetype = vuenetype;
     }
 }

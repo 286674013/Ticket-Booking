@@ -36,9 +36,9 @@ public class OrderService {
 
     public MessageInfo addOrder(User user, int performid,String seats,int buytype,String discounttype,String remark) {
 
-//        if (user.getState() == 0){
-//            return new MessageInfo(false,"该会员状态还未激活,不能预订");
-//        }
+        if (user.getState() == 0){
+            return new MessageInfo(false,"该会员状态还未激活,不能预订");
+        }
 
         MessageInfo messageInfo = performDao.findPerformById(performid);
         Perform perform=(Perform)messageInfo.getObject();
@@ -104,6 +104,7 @@ public class OrderService {
             orders.setRemark(remark);
             orders.setSeats(seatsToChoose);
 //            System.out.println(orders.getDiscount()+"折扣与座位"+orders.getSeats()+"价格"+orders.getPrice());
+            userDao.updateUserPreference(user);
             return orderDao.addOrder(orders);
         }else{
             if(messageInfo.isResult()){
@@ -339,18 +340,18 @@ public MessageInfo addOrderVuene(Vuene vuene,int performid,int userid,String sea
 
 
     public MessageInfo getOrdersBetweenTime(long start,long end){
-        return orderDao.findOrderBetweenTime(start,end);
+        return orderDao.findOrderBetweenTimeOriginal(start,end);
     }
     public MessageInfo getOrdersBetweenTime(long start,long end,int vueneid){
-        return orderDao.findOrderBetweenTime(start,end,vueneid);
+        return orderDao.findOrderBetweenTimeOriginal(start,end,vueneid);
     }
 
     public MessageInfo getCountOrderState(long start,long end,int vueneid){
-        return new MessageInfo(true,OrderAnalyzeUtil.countOrderState((List<Orders>) orderDao.findOrderBetweenTime(start,end,vueneid).getObject()),"数据如下");
+        return new MessageInfo(true,OrderAnalyzeUtil.countOrderState((List<Orders>) orderDao.findOrderBetweenTimeOriginal(start,end,vueneid).getObject()),"数据如下");
 
     }
     public MessageInfo getCountOrderPay(long start,long end,int vueneid){
-        return new MessageInfo(true,OrderAnalyzeUtil.countOrderPay((List<Orders>) orderDao.findOrderBetweenTime(start,end,vueneid).getObject()),"数据如下");
+        return new MessageInfo(true,OrderAnalyzeUtil.countOrderPay((List<Orders>) orderDao.findOrderBetweenTimeOriginal(start,end,vueneid).getObject()),"数据如下");
 
     }
 

@@ -12,6 +12,7 @@ public class VueneVo {
     String vuenedescription;
     double balance;
     int state;
+    String vuenetype;//根据单位时间内售票数及场馆放映室规模确定
     public VueneVo() {
     }
 
@@ -25,6 +26,21 @@ public class VueneVo {
         this.vuenedescription=vuene.getVuenedescription();
         this.balance=vuene.getBalance();
         this.state=vuene.getState();
+        switch (vuene.getVuenetype()){
+            case 0:
+                this.vuenetype="普通场馆";
+                break;
+            case 1:
+                this.vuenetype="小型场馆";
+                break;
+            case 2:
+                this.vuenetype="热门场馆";
+                break;
+            case 3:
+                this.vuenetype="顶尖场馆";
+                break;
+
+        }
 
 
     }
@@ -98,5 +114,13 @@ public class VueneVo {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public String getVuenetype() {
+        return vuenetype;
+    }
+
+    public void setVuenetype(String vuenetype) {
+        this.vuenetype = vuenetype;
     }
 }

@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="../css/manage-common.css">
     <link rel="stylesheet" href="../css/sweetalert.css">
     <link rel="stylesheet" href="../css/bootstrap-table.css">
+    <link rel="stylesheet" href="../css/select.css">
+    <link rel="stylesheet" href="../css/manifest.css">
 
 
 </head>
@@ -81,12 +83,12 @@
                 <p>结束时间</p>
                 <input type="datetime" class='form-control not-null' placeholder='结束时间' name='endtime'>
                 <p>放映室选择</p>
-                <select name="playroomname" id="roomchoice">
+                <select name="playroomname" id="roomchoice" style="width:100%;">
                     <option value="0">默认</option>
                     <option value="1">第二</option>
                 </select>
                 <p>演出类型选择</p>
-                <select name="performtype" id="performchoice">
+                <select name="performtype" id="performchoice" style="width:100%;">
                     <option value="电影">电影</option>
                     <option value="演唱会">演唱会</option>
                     <option value="杂技">杂技</option>
@@ -94,8 +96,9 @@
                     <option value="歌剧">歌剧</option>
                     <option value="戏剧">戏剧</option>
                     <option value="舞剧">舞剧</option>
-                    <option value="其他">其他</option>
                 </select>
+                <p>添加关键词</p>
+                <input type="text" placeholder='关键词' name='performkeys' id='performkeys' autocomplete="off">
 
 
                 <p>描述(配置\座位排布等)</p>
@@ -199,6 +202,10 @@
 <script src="../js/jquery.scrollgress.min.js"></script>
 <script src="../js/skel.min.js"></script>
 <script src="../js/util.js"></script>
+<script src="../js/select.jquery.js"></script>
+<script src="../js/manifest/jquery.ui.widget.min.js"></script>
+<script src="../js/manifest/jquery.marcopolo.min.js"></script>
+<script src="../js/manifest/jquery.manifest.js"></script>
 <!--[if lte IE 8]>
 <script src="../js/ie/respond.min.js"></script><![endif]-->
 <script src="../js/main.js"></script>

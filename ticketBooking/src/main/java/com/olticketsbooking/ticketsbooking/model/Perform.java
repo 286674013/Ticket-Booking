@@ -1,31 +1,14 @@
 package com.olticketsbooking.ticketsbooking.model;
 
-
-
-//DROP TABLE IF EXISTS `perform`;
-///*!40101 SET @saved_cs_client     = @@character_set_client */;
-///*!40101 SET character_set_client = utf8 */;
-//        CREATE TABLE `perform` (
-//        `performid` int(11) NOT NULL AUTO_INCREMENT,
-//        `playroomid` int(11) NOT NULL,
-//        `begintime` datetime NOT NULL,
-//        `endtime` datetime NOT NULL,
-//        `seatprice` varchar(255) NOT NULL COMMENT '根据seat的列呈数组排布。',
-//        `type` varchar(255) DEFAULT NULL,
-//        `description` varchar(2555) DEFAULT NULL,
-//        `vacancy` varchar(2555) DEFAULT NULL COMMENT 'like 1-1,1-2,1-3,2-1...',
-//        PRIMARY KEY (`performid`),
-//        UNIQUE KEY `performid_UNIQUE` (`performid`)
-//        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-///*!40101 SET character_set_client = @saved_cs_client */;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "perform")
+@Table(
+        name = "perform"
+)
 public class Perform {
     int performid;
     int playroomid;
@@ -40,10 +23,12 @@ public class Perform {
     String performtype;
     String performname;
     String performdescription;
-    String vacancy;  //like1,2,3,4,5
+    String vacancy;
     int countvacancy;
     int totalseats;
-    int state; //0:初创,1:进行中,2:过期,3:取消,4:其他
+    int state;
+    String performkeys;
+
 
     public Perform() {
     }
@@ -51,7 +36,7 @@ public class Perform {
     @Id
     @GeneratedValue
     public int getPerformid() {
-        return performid;
+        return this.performid;
     }
 
     public void setPerformid(int performid) {
@@ -59,7 +44,7 @@ public class Perform {
     }
 
     public String getPerformname() {
-        return performname;
+        return this.performname;
     }
 
     public void setPerformname(String performname) {
@@ -67,7 +52,7 @@ public class Perform {
     }
 
     public int getPlayroomid() {
-        return playroomid;
+        return this.playroomid;
     }
 
     public void setPlayroomid(int playroomid) {
@@ -75,7 +60,7 @@ public class Perform {
     }
 
     public int getVueneid() {
-        return vueneid;
+        return this.vueneid;
     }
 
     public void setVueneid(int vueneid) {
@@ -83,7 +68,7 @@ public class Perform {
     }
 
     public String getPlayroomname() {
-        return playroomname;
+        return this.playroomname;
     }
 
     public void setPlayroomname(String playroomname) {
@@ -91,7 +76,7 @@ public class Perform {
     }
 
     public String getPlayroomdescription() {
-        return playroomdescription;
+        return this.playroomdescription;
     }
 
     public void setPlayroomdescription(String playroomdescription) {
@@ -99,7 +84,7 @@ public class Perform {
     }
 
     public String getVuenename() {
-        return vuenename;
+        return this.vuenename;
     }
 
     public void setVuenename(String vuenename) {
@@ -107,7 +92,7 @@ public class Perform {
     }
 
     public String getVuenedescription() {
-        return vuenedescription;
+        return this.vuenedescription;
     }
 
     public void setVuenedescription(String vuenedescription) {
@@ -115,7 +100,7 @@ public class Perform {
     }
 
     public long getBegintime() {
-        return begintime;
+        return this.begintime;
     }
 
     public void setBegintime(long begintime) {
@@ -123,7 +108,7 @@ public class Perform {
     }
 
     public long getEndtime() {
-        return endtime;
+        return this.endtime;
     }
 
     public void setEndtime(long endtime) {
@@ -131,7 +116,7 @@ public class Perform {
     }
 
     public double getSeatprice() {
-        return seatprice;
+        return this.seatprice;
     }
 
     public void setSeatprice(double seatprice) {
@@ -139,7 +124,7 @@ public class Perform {
     }
 
     public String getPerformtype() {
-        return performtype;
+        return this.performtype;
     }
 
     public void setPerformtype(String performtype) {
@@ -147,7 +132,7 @@ public class Perform {
     }
 
     public String getPerformdescription() {
-        return performdescription;
+        return this.performdescription;
     }
 
     public void setPerformdescription(String performdescription) {
@@ -155,7 +140,7 @@ public class Perform {
     }
 
     public String getVacancy() {
-        return vacancy;
+        return this.vacancy;
     }
 
     public void setVacancy(String vacancy) {
@@ -163,7 +148,7 @@ public class Perform {
     }
 
     public int getTotalseats() {
-        return totalseats;
+        return this.totalseats;
     }
 
     public void setTotalseats(int totalseats) {
@@ -171,7 +156,7 @@ public class Perform {
     }
 
     public int getCountvacancy() {
-        return countvacancy;
+        return this.countvacancy;
     }
 
     public void setCountvacancy(int countvacancy) {
@@ -179,10 +164,18 @@ public class Perform {
     }
 
     public int getState() {
-        return state;
+        return this.state;
     }
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public String getPerformkeys() {
+        return performkeys;
+    }
+
+    public void setPerformkeys(String performkeys) {
+        this.performkeys = performkeys;
     }
 }

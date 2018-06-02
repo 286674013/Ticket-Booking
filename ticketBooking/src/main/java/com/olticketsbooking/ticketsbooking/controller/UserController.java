@@ -86,6 +86,24 @@ public class UserController {
         }else
             return new MessageInfo(false,"请登录");
     }
+
+
+    @RequestMapping("/user/update/preferenceInfo")
+    @ResponseBody
+    public MessageInfo updatePreferenceInfo(int userid){
+        return userService.updateUserPreference(userid);
+    }
+
+    @RequestMapping("/user/update/typeInfo")
+    @ResponseBody
+    public MessageInfo updateTypeInfo(int userid){
+        return userService.updateUserType(userid);
+    }
+
+
+
+
+
     @RequestMapping("/user/update/password")
     @ResponseBody
     public MessageInfo updatePassword(HttpSession session,String oldPassword,String newPassword1,String newPassword2){
